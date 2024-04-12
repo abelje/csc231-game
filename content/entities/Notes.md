@@ -41,3 +41,5 @@ To open the door do this:
 ```c++
 tile.door->open();
 ```
+Add a function to open door with a key?
+Close Door Action

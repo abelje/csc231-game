@@ -1,4 +1,6 @@
 #include "heroes.h"
+
+#include "action.h"
 #include "engine.h"
 #include "move.h"
 #include "rest.h"

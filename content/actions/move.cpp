@@ -10,21 +10,18 @@ Result Move::perform(Engine& engine, std::shared_ptr<Entity> entity) {
         // cannot move there
         return failure();
     }
-    if (tile.has_door()) {
+    if (tile.has_door()) { //
         // do something with door
         // open door
-        tile.door->open();
-        // move the entity
-        entity->change_direction(direction);
-        entity->move_to(pos);
-        return success();
+//        tile.door->open();
+//        // move the entity
+//        entity->change_direction(direction);
+//        entity->move_to(pos);
+        return failure();
     }
-    else {
-        entity->change_direction(direction);
-        entity->move_to(pos);
-    }
-    // set direction of entity
 
+    entity->change_direction(direction);
+    entity->move_to(pos);
     return success();
 }
 
