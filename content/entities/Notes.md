@@ -35,3 +35,9 @@ Remember to pass by reference Tile&
 #### Behaviors
 Taking turns 
 
+## 04/12
+#### Doors
+To open the door do this:
+```c++
+tile.door->open();
+```

@@ -1,5 +1,4 @@
 #include "heroes.h"
-
 #include "engine.h"
 #include "move.h"
 #include "rest.h"
@@ -31,6 +30,4 @@ namespace Heroes {
         }
         return nullptr;
     }
-
-
 }
