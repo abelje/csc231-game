@@ -4,7 +4,7 @@
 #include "entity.h"
 
 Result Move::perform(Engine& engine, std::shared_ptr<Entity> entity) {
-    Vec pos = entity->get_position() + vec;
+    Vec pos = entity->get_position() + direction;
     Tile& tile = engine.dungeon.get_tile(pos);
     if (tile.is_wall() || tile.has_entity()) {
         // cannot move there
@@ -15,12 +15,12 @@ Result Move::perform(Engine& engine, std::shared_ptr<Entity> entity) {
         // open door
         tile.door->open();
         // move the entity
-        entity->change_direction(vec);
+        entity->change_direction(direction);
         entity->move_to(pos);
         return success();
     }
     else {
-        entity->change_direction(vec);
+        entity->change_direction(direction);
         entity->move_to(pos);
     }
     // set direction of entity
@@ -28,7 +28,7 @@ Result Move::perform(Engine& engine, std::shared_ptr<Entity> entity) {
     return success();
 }
 
-Move::Move(Vec vec)
-:vec{vec} {
+Move::Move(Vec direction)
+: direction{direction} {
 
 }

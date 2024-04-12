@@ -4,7 +4,7 @@
 This function is based on positive and negative direction for left and right. Use the direction of movement for the
 positive or negative number.
 ```c++
-entity->change_direction(vec);
+entity->change_direction(direction);
 ```
 You can get current direction for an entity using a helper function.
 ```c++
@@ -13,7 +13,7 @@ entity->get_direction();
 ### Entity is not moving
 Make sure that the position that you are checking for is the tile in the direction you want to move.</n>
 ```c++
-Vec pos = entity->get_position() + vec;
+Vec pos = entity->get_position() + direction;
 Tile& tile = engine.dungeon.get_tile(pos);
 ```
 Make sure that the entity is set to move.

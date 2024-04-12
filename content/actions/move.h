@@ -7,8 +7,7 @@
 class Move : public Action {
 public:
     Result perform(Engine& engine, std::shared_ptr<Entity> entity) override;
-    std::unique_ptr<Action> move;
-    Move(Vec vec);
+    Move(Vec direction);
 private:
-    Vec vec;
+    Vec direction;
 };
