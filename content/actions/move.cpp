@@ -1,6 +1,4 @@
 #include "move.h"
-
-#include "../entities/heroes.h"
 #include "door.h"
 #include "engine.h"
 #include "entity.h"
