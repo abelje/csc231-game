@@ -23,6 +23,8 @@ entity->move_to(pos);
 ### You have a behavior, but the executable won't build.
 Make sure that the behavior that you have is nested in the namespace of the character.
 ```c++
+namespace Heroes {
+    
 void make_knight(std::shared_ptr<Entity>& hero) {
         hero->set_sprite("knight");
         hero->set_max_health(10);
