@@ -10,6 +10,9 @@ int main() {
 
         std::shared_ptr<Entity> hero = engine.create_hero();
         Heroes::make_knight(hero);
+
+        //std::shared_ptr<Entity> monster = engine.create_monster();
+
         engine.run();
     }
     catch (std::exception& e) {

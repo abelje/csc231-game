@@ -4,6 +4,7 @@
 #include "engine.h"
 #include "move.h"
 #include "rest.h"
+#include "closedoor.h"
 
 namespace Heroes {
 
@@ -29,6 +30,9 @@ namespace Heroes {
         }
         else if (key == "R") {
             return std::make_unique<Rest>();
+        }
+        else if (key == "C") {
+            return std::make_unique<CloseDoor>();
         }
         return nullptr;
     }

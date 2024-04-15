@@ -43,3 +43,8 @@ tile.door->open();
 ```
 Add a function to open door with a key?
 Close Door Action
+
+## 04/15
+### Derefrencing
+obj = *ptr // get obj being pointed to
+ptr = &obj
