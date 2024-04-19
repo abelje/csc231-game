@@ -1,8 +1,10 @@
-//
-// Created by abelj on 4/15/2024.
-//
+#pragma once
 
-#ifndef GAME_WANDER_H
-#define GAME_WANDER_H
+#include "action.h"
+#include "engine.h"
+#include "entity.h"
 
-#endif  // GAME_WANDER_H
+class Wander : public Action {
+public:
+    Result perform(Engine& engine, std::shared_ptr<Entity> entity) override;
+};

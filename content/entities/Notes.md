@@ -48,3 +48,21 @@ Close Door Action
 ### Derefrencing
 obj = *ptr // get obj being pointed to
 ptr = &obj
+
+## 04/17
+### Checkpoint 2
+Create OpenDoor Action (remember to add event
+UpdateFOV) </n> x
+Update Move::perform to return
+alternative(OpenDoor{position}) when
+appropriate </n>
+Create two new Monsters (in addition to the
+Masked Orc) </n>
+Give all monsters a behavior function </n>
+Add a few Monsters into your game (edit
+main.cpp) </n>
+
+### Items
+Interact with, use on self and others </n>
+Entities carry them </n>
+Item causes damage to the entity not the entity itself.

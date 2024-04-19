@@ -11,7 +11,11 @@ int main() {
         std::shared_ptr<Entity> hero = engine.create_hero();
         Heroes::make_knight(hero);
 
-        //std::shared_ptr<Entity> monster = engine.create_monster();
+        std::shared_ptr<Entity> monster = engine.create_monster();
+        Monsters::make_demon_tiny(monster);
+
+        std::shared_ptr<Entity> monster2 = engine.create_monster();
+        Monsters::make_goblin(monster2);
 
         engine.run();
     }

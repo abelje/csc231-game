@@ -52,3 +52,10 @@ void make_knight(std::shared_ptr<Entity>& hero) {
     }
 }
 ```
+
+## 04/18
+### Game Crashing when I make monster follow
+Seems to be when you try to move towards the monster and it's supposed to follow you, it won't go backwards and will
+crash. Might just be a death state causes a crash. Seems to be if a move you make allows the monster to go to the same 
+tile that you want to, it will crash. Adding a chance to rest in the follow command made the game not crash, when doing
+things that would make the game crash before.
