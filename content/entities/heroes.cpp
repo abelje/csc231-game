@@ -5,12 +5,14 @@
 #include "move.h"
 #include "rest.h"
 #include "closedoor.h"
+#include "sword.h"
 
 namespace Heroes {
 
     void make_knight(std::shared_ptr<Entity>& hero) {
         hero->set_sprite("knight");
         hero->set_max_health(10);
+        hero->add_to_inventory(std::make_shared<Big_Sword>(5));
         hero->behavior = behavior;
     }
 
