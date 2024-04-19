@@ -37,7 +37,8 @@ std::unique_ptr<Action> behavior(Engine& engine, Entity& entity) {
     // if monster can't see hero
     if (probability(66)) {
         return std::make_unique<Wander>();
-    } else {
+    }
+    else {
         return std::make_unique<Rest>();
     }
 }
