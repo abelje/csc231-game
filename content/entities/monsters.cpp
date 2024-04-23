@@ -20,6 +20,12 @@ void make_goblin(std::shared_ptr<Entity>& monster) {
     monster->behavior = behavior2;
 }
 
+void make_orc_masked(std::shared_ptr<Entity>& monster) {
+    monster->set_sprite("orc_masked");
+    monster->set_max_health(7);
+    monster->behavior = behavior2;
+}
+
 std::unique_ptr<Action> behavior(Engine& engine, Entity& entity) {
     // if monster is visible and can see hero
     if (entity.is_visible() && engine.hero) {
