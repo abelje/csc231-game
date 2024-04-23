@@ -16,7 +16,7 @@ namespace Heroes {
         hero->behavior = behavior;
     }
 
-    std::unique_ptr<Action> behavior(Engine& engine, Entity&) {
+    std::unique_ptr<Action> behavior(Engine& engine, Entity& entity) {
         std::string key = engine.input.get_last_keypress();
         if (key == "Right" || key == "D") {
             return std::make_unique<Move>(Vec{1, 0});
@@ -35,6 +35,10 @@ namespace Heroes {
         }
         else if (key == "C") {
             return std::make_unique<CloseDoor>();
+        }
+        else if (!key.empty() && std::isdigit(key.at(0))){
+            int item_num = std::stoi(key) - 1; // "1" -> index 0
+            entity.select_item(item_num);
         }
         return nullptr;
     }

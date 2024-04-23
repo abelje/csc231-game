@@ -1,5 +1,6 @@
 #include "move.h"
 
+#include "attack.h"
 #include "door.h"
 #include "engine.h"
 #include "entity.h"
@@ -14,7 +15,12 @@ Result Move::perform(Engine& engine, std::shared_ptr<Entity> entity) {
         return failure();
     }
     if (tile.has_entity()) {
-        return alternative(Rest());
+        if(entity->get_team() != tile.entity->get_team()) { // if the team is not the same as your own, attack
+            return alternative(Attack{*tile.entity});
+        }
+        else {
+            return alternative(Rest());
+        }
     }
     if (tile.has_door() && !tile.door->is_open()) {
         return alternative(OpenDoor{*tile.door});

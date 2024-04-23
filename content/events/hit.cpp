@@ -15,3 +15,4 @@ void Hit::when_done(Engine&) {
         add_next(Die{entity});
     }
 }
+
