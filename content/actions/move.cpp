@@ -10,6 +10,7 @@
 Result Move::perform(Engine& engine, std::shared_ptr<Entity> entity) {
     Vec pos = entity->get_position() + direction;
     Tile& tile = engine.dungeon.get_tile(pos);
+    entity->change_direction(direction);
     if (tile.is_wall()) {
         // cannot move there
         return failure();
@@ -26,7 +27,6 @@ Result Move::perform(Engine& engine, std::shared_ptr<Entity> entity) {
         return alternative(OpenDoor{*tile.door});
     }
 
-    entity->change_direction(direction);
     entity->move_to(pos);
     return success();
 }

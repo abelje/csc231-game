@@ -1,11 +1,11 @@
 #include "heroes.h"
 
 #include "action.h"
+#include "big_sword.h"
+#include "closedoor.h"
 #include "engine.h"
 #include "move.h"
 #include "rest.h"
-#include "closedoor.h"
-#include "sword.h"
 
 namespace Heroes {
 

@@ -1,6 +1,8 @@
 add_library(items
   bite.cpp
-        sword.cpp
+        big_sword.cpp
+        knife.cpp
+        spiked_club.cpp
 )
 
 target_include_directories(items PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
