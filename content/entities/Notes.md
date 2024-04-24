@@ -66,3 +66,13 @@ main.cpp) </n>
 Interact with, use on self and others </n>
 Entities carry them </n>
 Item causes damage to the entity not the entity itself.
+
+## 04/23
+### Checkpoint 3
+Add Attack action
+Modify Move::perform() to attack another entity if
+on a different team
+Add code for Hit and Die classes
+Make two new weapons, give them to
+hero/monsters
+Make sure attacking works!
