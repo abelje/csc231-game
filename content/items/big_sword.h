@@ -2,9 +2,9 @@
 
 #include "item.h"
 
-class Big_Sword : public Item {
+class BigSword : public Item {
 public:
-    explicit Big_Sword(int damage);
+    explicit BigSword(int damage);
     void use(Engine& engine, Entity&, Entity& defender) override;
 
 private:

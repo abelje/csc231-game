@@ -27,7 +27,7 @@ void make_goblin(std::shared_ptr<Entity>& monster) {
 void make_orc_masked(std::shared_ptr<Entity>& monster) {
     monster->set_sprite("orc_masked");
     monster->set_max_health(7);
-    monster->add_to_inventory(std::make_shared<Spiked_club>(4));
+    monster->add_to_inventory(std::make_shared<SpikedClub>(4));
     monster->behavior = behavior2;
 }
 
