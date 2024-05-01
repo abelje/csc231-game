@@ -1,14 +1,18 @@
 #include "knife.h"
 
+#include "animation.h"
 #include "engine.h"
 #include "entity.h"
 #include "hit.h"
+#include "throw.h"
 #include "thrust.h"
 
 Knife::Knife(int damage)
 : Item{"knife"}, damage{damage} {}
 
-void Knife::use(Engine& engine, Entity&, Entity& defender) {
-    //engine.events.create_event<Thrust>(sprite, attacker.get_direction());
-    engine.events.create_event<Hit>(defender, damage);
+void Knife::use(Engine& engine, Entity& attacker, Entity& defender) {
+   auto thrust = engine.events.create_event<Throw>(sprite, attacker.get_direction());
+    std::shared_ptr<Event> fire = std::make_shared<Animation>("fire", defender.get_position());
+    fire->add_next(Hit{defender,damage});
+    thrust->add_next(fire);
 }

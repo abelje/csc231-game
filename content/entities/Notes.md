@@ -76,3 +76,14 @@ Add code for Hit and Die classes
 Make two new weapons, give them to
 hero/monsters
 Make sure attacking works!
+
+### Ideas for Items
+Heart pickup to increase player health
+
+## 04/26
+Create_event swing, add_next to get other things
+Can make execute delay event to delay time
+
+### idea for final
+Create a healing item that I can pick up. Make splash potions that can heal monsters in a general area.
+Need to make a new action and event.

@@ -4,8 +4,10 @@
 #include "big_sword.h"
 #include "closedoor.h"
 #include "engine.h"
+#include "knife.h"
 #include "move.h"
 #include "rest.h"
+#include "spiked_club.h"
 
 namespace Heroes {
 
@@ -13,6 +15,8 @@ namespace Heroes {
         hero->set_sprite("knight");
         hero->set_max_health(10);
         hero->add_to_inventory(std::make_shared<Big_Sword>(5));
+        hero->add_to_inventory(std::make_shared<Knife>(2));
+        hero->add_to_inventory(std::make_shared<Spiked_club>(4));
         hero->behavior = behavior;
     }
 

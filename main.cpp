@@ -18,6 +18,7 @@ int main() {
             Monsters::make_demon_tiny(monster);
             Monsters::make_goblin(monster2);
             Monsters::make_orc_masked(monster3);
+
         }
 
 //        std::shared_ptr<Entity> monster = engine.create_monster();
