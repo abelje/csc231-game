@@ -1,6 +1,9 @@
 #include "engine.h"
 #include "heroes.h"
 #include "monsters.h"
+#include "dungeon.h"
+#include "item.h"
+#include "healing_potion.h"
 #include <iostream>
 
 int main() {
@@ -20,6 +23,10 @@ int main() {
             Monsters::make_orc_masked(monster3);
 
         }
+
+        Vec pos = engine.dungeon.random_open_room_tile();
+        Tile& tile = engine.dungeon.get_tile(pos);
+        tile.item = std::make_shared<HealingPotion>(4);
 
 //        std::shared_ptr<Entity> monster = engine.create_monster();
 //        Monsters::make_demon_tiny(monster);

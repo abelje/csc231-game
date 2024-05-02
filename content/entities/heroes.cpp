@@ -1,9 +1,12 @@
 #include "heroes.h"
 
 #include "action.h"
+#include "attack.h"
 #include "big_sword.h"
 #include "closedoor.h"
 #include "engine.h"
+#include "healing_potion.h"
+#include "hit.h"
 #include "knife.h"
 #include "move.h"
 #include "rest.h"
@@ -17,6 +20,7 @@ namespace Heroes {
         hero->add_to_inventory(std::make_shared<BigSword>(5));
         hero->add_to_inventory(std::make_shared<Knife>(2));
         hero->add_to_inventory(std::make_shared<SpikedClub>(4));
+        hero->add_to_inventory(std::make_shared<HealingPotion>(5));
         hero->behavior = behavior;
     }
 
@@ -39,6 +43,9 @@ namespace Heroes {
         }
         else if (key == "C") {
             return std::make_unique<CloseDoor>();
+        }
+        else if (key == "H") {
+            return std::make_unique<Attack>(entity);
         }
         else if (!key.empty() && std::isdigit(key.at(0))){
             int item_num = std::stoi(key) - 1; // "1" -> index 0

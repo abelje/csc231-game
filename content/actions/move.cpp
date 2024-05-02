@@ -6,6 +6,7 @@
 #include "entity.h"
 #include "opendoor.h"
 #include "rest.h"
+#include "item.h"
 
 Result Move::perform(Engine& engine, std::shared_ptr<Entity> entity) {
     entity->change_direction(direction);
@@ -27,7 +28,9 @@ Result Move::perform(Engine& engine, std::shared_ptr<Entity> entity) {
     if (tile.has_door() && !tile.door->is_open()) {
         return alternative(OpenDoor{*tile.door});
     }
-
+    if(tile.has_item()) {
+        tile.item->interact(engine, *entity);
+    }
     entity->move_to(pos);
     return success();
 }
