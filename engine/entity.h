@@ -43,6 +43,7 @@ public:
     [[nodiscard]] std::shared_ptr<Item> get_current_item() const;
     void select_item(int index);
     std::shared_ptr<Item> remove_item(int index);
+    void remove_item(Item* item);
     // returns selected item number and names of all items in inventory
     [[nodiscard]] std::pair<int, std::vector<std::string>> get_inventory_list() const;
 

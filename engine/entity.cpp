@@ -135,6 +135,17 @@ std::shared_ptr<Item> Entity::remove_item(int index) {
     }
 }
 
+void Entity::remove_item(Item* item) {
+    auto it = std::find_if(std::begin(inventory), std::end(inventory),
+                           [=](std::shared_ptr<Item>& i) {
+                               return item == i.get();
+                           });
+
+    if (it != inventory.end()) { // found the item
+        *it = nullptr;
+    }
+}
+
 std::pair<int, std::vector<std::string>> Entity::get_inventory_list() const {
     std::vector<std::string> names;
     for (const std::shared_ptr<Item>& item : inventory) {
