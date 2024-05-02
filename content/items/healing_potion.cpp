@@ -10,7 +10,7 @@ HealingPotion::HealingPotion(int health) // maybe pass in Item or Tile?
 
 void HealingPotion::use(Engine& engine, Entity& attacker, Entity&) {
     engine.events.create_event<Hit>(attacker, health);
-
+    attacker.remove_item(this);
 }
 
 void HealingPotion::interact(Engine& engine, Entity& entity) {
