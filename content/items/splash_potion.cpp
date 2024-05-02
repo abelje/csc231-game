@@ -23,18 +23,22 @@ void SplashPotion::use(Engine& engine, Entity& attacker, Entity& defender) {
 
     // search and heal entities from the same team
     for(int i = -1; i < 1; ++i) {
+        // check up/down
         Vec pos_vertical = attacker.get_position() + Vec{0, i};
         Tile& tile = engine.dungeon.get_tile(pos_vertical);
         heal_defender(engine, attacker, defender, tile);
 
+        // check left/right
         Vec pos_horizontal = attacker.get_position() + Vec{i, 0};
         tile = engine.dungeon.get_tile(pos_horizontal);
         heal_defender(engine, attacker, defender, tile);
 
+        // check upper right and bottom left corners
         Vec corners = attacker.get_position() + Vec{i, i};
         tile = engine.dungeon.get_tile(corners);
         heal_defender(engine, attacker, defender, tile);
 
+        // check upper left and bottom right corners
         Vec corners2 = attacker.get_position() + Vec{-i, i};
         tile = engine.dungeon.get_tile(corners2);
         heal_defender(engine, attacker, defender, tile);
