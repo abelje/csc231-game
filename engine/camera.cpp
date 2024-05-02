@@ -1,15 +1,16 @@
 #include "camera.h"
 
-#include <algorithm>
-
 #include "dungeon.h"
 #include "entities.h"
 #include "entity.h"
 #include "graphics.h"
+#include "item.h"
+
+#include <algorithm>
 
 Camera::Camera(Graphics& graphics, int tile_size, int zoom)
     :graphics{graphics}, tile_size{tile_size}, zoom{zoom}, location{0, 0},
-     screen_center{graphics.screen_width /2, graphics.screen_height /2} {
+      screen_center{graphics.screen_width /2, graphics.screen_height /2} {
     calculate_visibility_limits();
 }
 
@@ -17,7 +18,7 @@ void Camera::render(const Vec& position, const Sprite& sprite) const {
     Vec pixel = world_to_screen(position);
     graphics.draw_sprite(pixel, sprite, zoom);
 }
-    
+
 void Camera::render(const Dungeon& dungeon) const {
     // screen -> world
     // calculate min, max values for x, y, then only draw those
@@ -26,9 +27,9 @@ void Camera::render(const Dungeon& dungeon) const {
     int x_max = std::min(max.x, dungeon.tiles.width-1);
     int y_max = std::min(max.y, dungeon.tiles.height-1);
 
-    // remember any doors that are in view, then draw them later on top of base tiles
-    std::vector<std::pair<Vec, Sprite>> door_sprites;
-    
+    // remember any doors or items that are in view, then draw them later on top of base tiles
+    std::vector<std::pair<Vec, Sprite>> door_sprites, item_sprites;
+
     // draw tile base sprite
     for (int y = y_min; y <= y_max; ++y) {
         for (int x = x_min; x <= x_max; ++x) {
@@ -39,15 +40,23 @@ void Camera::render(const Dungeon& dungeon) const {
                 if (tile.has_door()) {
                     door_sprites.emplace_back(position, tile.door->get_sprite());
                 }
+                if (tile.has_item()) {
+                    item_sprites.emplace_back(position, tile.item->sprite);
+                }
             }
         }
     }
 
     // draw decorations
-    for (const auto& [position, doodad] : dungeon.decorations) {
+    for (const auto& [position, decoration] : dungeon.decorations) {
         if (within_view(position)) {
-            render(position, doodad.get_sprite());
+            render(position, decoration.get_sprite());
         }
+    }
+
+    // draw items
+    for (const auto& [position, sprite] : item_sprites) {
+        render(position, sprite);
     }
 
     // draw doors
@@ -72,7 +81,7 @@ void Camera::render_fog(const Dungeon& dungeon) const {
     int y_min = std::max(0, min.y);
     int x_max = std::min(max.x, dungeon.tiles.width-1);
     int y_max = std::min(max.y, dungeon.tiles.height-1);
-        
+
     for (int y = y_min; y <= y_max; ++y) {
         for (int x = x_min; x <= x_max; ++x) {
             Vec position{x, y};
@@ -106,11 +115,11 @@ void Camera::render_health_bar(int current_health, int max_health) {
 void Camera::render_items(int selected_item, const std::vector<std::string>& sprite_names) {
     constexpr Vec size{54, 54}, gap{5, 5};
     for (std::size_t i = 0; i < sprite_names.size(); ++i) {
-        int x = graphics.screen_width - (size.x + gap.x) * (max_inventory - i) - gap.x;
+        int x = static_cast<int>(graphics.screen_width - (size.x + gap.x) * (max_inventory - i) - gap.x);
         int y = 10;
         Vec corner{x, y};
         // draw border, then background, then item sprite
-        if (i == selected_item) {
+        if (static_cast<int>(i) == selected_item) {
             // red border indicates that item is currently selected
             graphics.draw_rect(corner, size, 255, 0, 0, 255);
         }
@@ -186,6 +195,6 @@ void Camera::calculate_visibility_limits() {
     
 bool Camera::within_view(const Vec& position) const {
     return min.x <= position.x && position.x <= max.x
-        && min.y <= position.y && position.y <= max.y;
+           && min.y <= position.y && position.y <= max.y;
 }
 
