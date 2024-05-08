@@ -7,6 +7,7 @@
 class Animation : public Event {
 public:
     explicit Animation(std::string name, Vec position);
+
     void execute(Engine& engine) override;
 
 private:

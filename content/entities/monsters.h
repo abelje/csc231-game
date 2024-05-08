@@ -9,6 +9,7 @@ namespace Monsters {
    void make_goblin(std::shared_ptr<Entity>& monster);
    void make_orc_masked(std::shared_ptr<Entity>& monster);
    void make_necromancer(std::shared_ptr<Entity>& monster);
+
    std::unique_ptr<Action> chaser(Engine& engine, Entity& entity);
    std::unique_ptr<Action> wanderer(Engine&, Entity&);
    Vec path(Engine& engine, Entity& entity,  Tile& tile);

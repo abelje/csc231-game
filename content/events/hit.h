@@ -10,6 +10,8 @@ public:
     Hit(Entity& entity, int damage);
 
     void execute(Engine& engine) override;
+
+    // PLay die event if the entity is dead
     void when_done(Engine& engine) override;
 
 private:
