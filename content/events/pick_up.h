@@ -7,15 +7,11 @@
 
 class PickUp : public Event {
 public:
-    PickUp(Entity& entity, Tile& tile);
+    explicit PickUp(Entity& entity);
 
     // add item to entity's inventory
     void execute(Engine& engine) override;
 
-    // remove item from game world
-    void when_done(Engine& engine) override;
 private:
     Entity& entity;
-    Tile& tile;
-    Item reset{"bite"};
 };

@@ -5,16 +5,16 @@
 #include "tile.h"
 #include "item.h"
 
-PickUp::PickUp(Entity& entity, Tile& tile)
-:entity{entity}, tile{tile} {}
+PickUp::PickUp(Entity& entity)
+:entity{entity} {}
 
 void PickUp::execute(Engine& engine) {
     //add to inventory
-    entity.add_to_inventory(tile.item);
-}
+    Vec pos = entity.get_position();
+    Tile& tiles = engine.dungeon.get_tile(pos);
+    entity.add_to_inventory(tiles.item);
 
-void PickUp::when_done(Engine& engine) {
-    // remove from the ground
+    // override item on tile with blank item to remove from game world
     std::shared_ptr<Item> item;
-    tile.item = item; // Might work have to check, want to remove the item from the tile
+    tiles.item = item;
 }

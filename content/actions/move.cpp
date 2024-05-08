@@ -18,12 +18,7 @@ Result Move::perform(Engine& engine, std::shared_ptr<Entity> entity) {
         return failure();
     }
     if (tile.has_entity()) {
-        if(entity->get_team() != tile.entity->get_team()) { // if the team is not the same as your own, attack
-            return alternative(Attack{*tile.entity});
-        }
-        else {
-            return alternative(Rest());
-        }
+        return alternative(Attack{*tile.entity});
     }
     if (tile.has_door() && !tile.door->is_open()) {
         return alternative(OpenDoor{*tile.door});

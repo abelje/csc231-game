@@ -1,16 +1,13 @@
 #include "heroes.h"
 
 #include "action.h"
-#include "attack.h"
 #include "big_sword.h"
 #include "closedoor.h"
 #include "engine.h"
 #include "healing_potion.h"
-#include "hit.h"
-#include "knife.h"
 #include "move.h"
 #include "rest.h"
-#include "spiked_club.h"
+#include "use_item.h"
 
 namespace Heroes {
 
@@ -18,8 +15,6 @@ namespace Heroes {
         hero->set_sprite("knight");
         hero->set_max_health(10);
         hero->add_to_inventory(std::make_shared<BigSword>(5));
-        hero->add_to_inventory(std::make_shared<Knife>(2));
-        hero->add_to_inventory(std::make_shared<SpikedClub>(4));
         hero->add_to_inventory(std::make_shared<HealingPotion>(5));
         hero->behavior = behavior;
     }
@@ -30,7 +25,7 @@ namespace Heroes {
             return std::make_unique<Move>(Vec{1, 0});
         }
         else if (key == "Left" || key == "A") {
-            return std::make_unique<Move>(Vec{-1, 0});;
+            return std::make_unique<Move>(Vec{-1, 0});
         }
         else if (key == "Up" || key == "W") {
             return std::make_unique<Move>(Vec{0, 1});
@@ -45,7 +40,7 @@ namespace Heroes {
             return std::make_unique<CloseDoor>();
         }
         else if (key == "H") {
-            return std::make_unique<Attack>(entity);
+            return std::make_unique<UseItem>();
         }
         else if (!key.empty() && std::isdigit(key.at(0))){
             int item_num = std::stoi(key) - 1; // "1" -> index 0

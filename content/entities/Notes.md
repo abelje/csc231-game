@@ -58,7 +58,7 @@ alternative(OpenDoor{position}) when
 appropriate </n>
 Create two new Monsters (in addition to the
 Masked Orc) </n>
-Give all monsters a behavior function </n>
+Give all monsters a chaser function </n>
 Add a few Monsters into your game (edit
 main.cpp) </n>
 

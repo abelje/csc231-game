@@ -5,17 +5,15 @@
 #include "hit.h"
 #include "pick_up.h"
 
-HealingPotion::HealingPotion(int health) // maybe pass in Item or Tile?
+HealingPotion::HealingPotion(int health)
 : Item{"potion_red"}, health{health * -1} {}
 
-void HealingPotion::use(Engine& engine, Entity& attacker, Entity&) {
-    engine.events.create_event<Hit>(attacker, health);
-    attacker.remove_item(this);
+void HealingPotion::use(Engine& engine, Entity& owner) {
+    engine.events.create_event<Hit>(owner, health);
+    owner.remove_item(this);
 }
 
 void HealingPotion::interact(Engine& engine, Entity& entity) {
-    // get current tile and generate a pickup event
-    Vec pos = entity.get_position();
-    Tile& tile = engine.dungeon.get_tile(pos);
-    engine.events.create_event<PickUp>(entity, tile);
+    // generate a pickup event
+    engine.events.create_event<PickUp>(entity);
 }

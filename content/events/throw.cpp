@@ -12,12 +12,10 @@ Throw::Throw(Sprite& sprite, Vec direction)
     sprite.shift.y -= sprite.size.y / 4;
 
     if (direction == Vec {1,0}) { // right
-        sprite.size.y += sprite.size.y / 2;
         sprite.angle = 90;
         angle = sprite.angle;
     }
     else if (direction == Vec {-1,0}) { // left
-        sprite.size.y += sprite.size.y / 2;
         sprite.angle = -90;
         angle = sprite.angle;
     }
@@ -36,13 +34,12 @@ Throw::Throw(Sprite& sprite, Vec direction)
 
 void Throw::execute(Engine&) {
     // 16 pixels per tile
-    // add an if statement for if it goes to the left.
     for(int i = 0; i < 8; ++i) {
-        if (i % 2 == 0 && angle < 0) {
-            sprite.angle += rev_spin;
-        }
         if (i % 2 == 0 && angle >= 0) {
             sprite.angle += spin;
+        }
+        if (i % 2 && angle < 0) {
+            sprite.angle += rev_spin * delta;
         }
         else {
             sprite.shift += direction * delta;
