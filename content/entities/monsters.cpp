@@ -34,7 +34,7 @@ void make_orc_masked(std::shared_ptr<Entity>& monster) {
 
 void make_necromancer(std::shared_ptr<Entity>& monster) {
     monster->set_sprite("necromancer");
-    monster->set_max_health(15);
+    monster->set_max_health(10);
     monster->add_to_inventory(std::make_shared<SplashPotion>(4));
     monster->behavior = healer;
 }
