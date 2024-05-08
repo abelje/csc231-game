@@ -109,7 +109,7 @@ std::unique_ptr<Action> healer(Engine& engine, Entity& entity) {
             return std::make_unique<Move>(path(engine, entity, corner));
         }
 
-      // check upper left and bottom right corners
+        // check upper left and bottom right corners
         Vec corners2 = entity.get_position() + Vec{-i, i};
         Tile& corner2 = engine.dungeon.get_tile(corners2);
         if (path(engine, entity, corner2) != Vec {0,0}) {

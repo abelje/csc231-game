@@ -19,5 +19,7 @@ void SpikedClub::use(Engine& engine, Entity& attacker, Entity& defender) {
 
 void SpikedClub::interact(Engine& engine, Entity& entity) {
     // generate a pickup event
-    engine.events.create_event<PickUp>(entity);
+    if(entity.get_team() == engine.hero->get_team()) {
+        engine.events.create_event<PickUp>(entity);
+    }
 }

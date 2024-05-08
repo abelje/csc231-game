@@ -15,5 +15,7 @@ void HealingPotion::use(Engine& engine, Entity& owner) {
 
 void HealingPotion::interact(Engine& engine, Entity& entity) {
     // generate a pickup event
-    engine.events.create_event<PickUp>(entity);
+    if (entity.get_team() == engine.hero->get_team()) {
+        engine.events.create_event<PickUp>(entity);
+    }
 }

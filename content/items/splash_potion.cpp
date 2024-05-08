@@ -4,9 +4,7 @@
 #include "engine.h"
 #include "entity.h"
 #include "hit.h"
-#include "swing.h"
 #include "throw.h"
-#include "thrust.h"
 
 SplashPotion::SplashPotion(int health)
 : Item{"potion_blue"}, health{health * -1} {}

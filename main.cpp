@@ -38,17 +38,14 @@ int main() {
             tile.item = heal;
         }
 
+        // make item and look up sprite
+        auto club = std::make_shared<SpikedClub>(6);
+        club->sprite = engine.graphics.get_sprite(club->name);
 
-        for(int i = 0; i < 3; ++i) {
-            // make item and look up sprite
-            auto club = std::make_shared<SpikedClub>(6);
-            club->sprite = engine.graphics.get_sprite(club->name);
-
-            //
-            Vec club_pos = engine.dungeon.random_open_room_tile();
-            Tile& club_tile = engine.dungeon.get_tile(club_pos);
-            club_tile.item = club;
-        }
+        // place the item on a random tile
+        Vec club_pos = engine.dungeon.random_open_room_tile();
+        Tile& club_tile = engine.dungeon.get_tile(club_pos);
+        club_tile.item = club;
 
         engine.run();
     }
